@@ -84,35 +84,90 @@ export default function ThirdwebGuideOverlay({ show, setShow }: Props) {
             marginBottom: 0,
           }}
         >
-          TODO
+          thirdweb Contract Hub
         </h1>
-        <p>TODO</p>
+        <p>
+          An example repository to showcase our most popular contracts, and how
+          to use their core features in the TypeScript and React SDKs.
+        </p>
 
         <h3 style={{ marginBottom: 0 }}>More Resources:</h3>
         <ul style={{ textAlign: "start" }}>
           <li>
             <a
-              href="https://docs.thirdweb.com/react/react.usemagic"
+              href="https://portal.thirdweb.com/contracts/nft-collection"
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 color: "#3e76d5",
               }}
             >
-              <b>TODO</b>
+              <b>NFT Collection Contract Docs</b>
             </a>
           </li>
 
           <li>
             <a
-              href="https://magic.link/docs"
+              href="https://portal.thirdweb.com/contracts/nft-drop"
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 color: "#3e76d5",
               }}
             >
-              <b>TODO</b>
+              <b>NFT Drop Contract Docs</b>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://portal.thirdweb.com/contracts/edition"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#3e76d5",
+              }}
+            >
+              <b>Edition Contract Docs</b>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://portal.thirdweb.com/contracts/edition-drop"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#3e76d5",
+              }}
+            >
+              <b>Edition Drop Contract Docs</b>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://portal.thirdweb.com/contracts/token"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#3e76d5",
+              }}
+            >
+              <b>Token Contract Docs</b>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://portal.thirdweb.com/contracts/marketplace"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#3e76d5",
+              }}
+            >
+              <b>Marketplace Contract Docs</b>
             </a>
           </li>
         </ul>
