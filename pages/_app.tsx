@@ -21,8 +21,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>thirdweb Contract Example Hub</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="TODO" />
-        <meta name="keywords" content="TODO" />
+        <meta
+          name="description"
+          content="thirdweb Example Repository to Showcase How To Use thirdweb's NFT contracts, Marketplace contracts, and token contracts. "
+        />
+        <meta
+          name="keywords"
+          content="thirdweb nft contract example, thirdweb nft tutorial, thirdweb nft guide, thirdweb marketplace, thirdweb marketplace guide, thirdweb token guide"
+        />
       </Head>
       <Header />
       <Component {...pageProps} />

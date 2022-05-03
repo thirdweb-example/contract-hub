@@ -2,6 +2,7 @@ import { MediaRenderer, useMarketplace } from "@thirdweb-dev/react";
 import { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
 import React, { useEffect, useState } from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
+import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
@@ -16,9 +17,7 @@ export default function Marketplace() {
   // Fetch Listings
   useEffect(() => {
     (async () => {
-      if (!marketplace) {
-        return;
-      }
+      if (!marketplace) return;
       const ls = await marketplace.getActiveListings();
       setListings(ls);
       setLoading(false);
@@ -74,7 +73,7 @@ export default function Marketplace() {
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
-      <CodeSnippet text={``} />
+      <CodeSnippet text={codeSnippets.marketplace} />
     </div>
   );
 }

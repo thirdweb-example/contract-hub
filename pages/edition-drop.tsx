@@ -1,8 +1,9 @@
-import { MediaRenderer, useEditionDrop, useNFTList } from "@thirdweb-dev/react";
+import { MediaRenderer, useEditionDrop } from "@thirdweb-dev/react";
 import { NFTMetadata } from "@thirdweb-dev/sdk";
 import { BigNumber } from "ethers";
 import React, { useEffect, useState } from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
+import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
@@ -10,19 +11,16 @@ export default function EditionDrop() {
   const editionDropContract = useEditionDrop(contractAddresses[2].address);
   const [loading, setLoading] = useState<boolean>(true);
   const [nfts, setNfts] = useState<
-    | {
-        metadata: NFTMetadata;
-        supply: BigNumber;
-      }[]
-    | undefined
+    {
+      metadata: NFTMetadata;
+      supply: BigNumber;
+    }[]
   >([]);
 
   // Fetch NFTs
   useEffect(() => {
     (async () => {
-      if (!editionDropContract) {
-        return;
-      }
+      if (!editionDropContract) return;
       const nfts = await editionDropContract.getAll();
       setNfts(nfts);
       setLoading(false);
@@ -87,7 +85,7 @@ export default function EditionDrop() {
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
-      <CodeSnippet text={``} />
+      <CodeSnippet text={codeSnippets.editionDrop} />
     </div>
   );
 }

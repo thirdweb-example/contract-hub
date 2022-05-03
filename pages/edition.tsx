@@ -3,10 +3,11 @@ import { NFTMetadata } from "@thirdweb-dev/sdk";
 import { BigNumber } from "ethers";
 import React, { useEffect, useState } from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
+import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
-export default function EditionDrop() {
+export default function Edition() {
   const editionContract = useEdition(contractAddresses[3].address);
   const [loading, setLoading] = useState<boolean>(true);
   const [nfts, setNfts] = useState<
@@ -80,7 +81,7 @@ export default function EditionDrop() {
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
-      <CodeSnippet text={``} />
+      <CodeSnippet text={codeSnippets.edition} />
     </div>
   );
 }

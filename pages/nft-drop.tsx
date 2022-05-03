@@ -1,8 +1,9 @@
 import { MediaRenderer, useNFTDrop } from "@thirdweb-dev/react";
-import { NFTMetadata, NFTMetadataOwner } from "@thirdweb-dev/sdk";
+import { NFTMetadata } from "@thirdweb-dev/sdk";
 import { BigNumber } from "ethers";
 import React, { useEffect, useState } from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
+import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
@@ -88,7 +89,7 @@ export default function NFTDrop() {
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
-      <CodeSnippet text={``} />
+      <CodeSnippet text={codeSnippets.nftDrop} />
     </div>
   );
 }

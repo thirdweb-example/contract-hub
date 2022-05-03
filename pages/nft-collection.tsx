@@ -5,6 +5,7 @@ import {
 } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
+import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
@@ -60,7 +61,7 @@ export default function NFTCollection() {
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
-      <CodeSnippet text={``} />
+      <CodeSnippet text={codeSnippets.nftCollection} />
     </div>
   );
 }

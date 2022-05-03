@@ -2,6 +2,7 @@ import { useAddress, useToken } from "@thirdweb-dev/react";
 import { CurrencyValue } from "@thirdweb-dev/sdk";
 import React, { useEffect, useState } from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
+import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
@@ -9,16 +10,16 @@ export default function NFTDrop() {
   const tokenContract = useToken(contractAddresses[4].address);
   const address = useAddress();
 
-  const [balance, setBalance] = useState<CurrencyValue | null>();
+  const [balance, setBalance] = useState<CurrencyValue>();
   const [totalSupply, setTotalSupply] = useState<CurrencyValue>();
 
-  // Fetch NFTs
+  // Fetch Token Information
   useEffect(() => {
     (async () => {
-      const balanceOfUser = address
-        ? await tokenContract?.balanceOf(address)
-        : null;
-      setBalance(balanceOfUser);
+      if (address) {
+        const balanceOfUser = await tokenContract?.balanceOf(address);
+        setBalance(balanceOfUser);
+      }
 
       const supply = await tokenContract?.totalSupply();
       setTotalSupply(supply);
@@ -59,8 +60,13 @@ export default function NFTDrop() {
           <div className={styles.tokenItem}>
             <h3 className={styles.tokenLabel}>Total Supply</h3>
             <p className={styles.tokenValue}>
-              {totalSupply === undefined && "Loading..."}
-              {totalSupply?.displayValue} {totalSupply?.symbol}
+              {totalSupply === undefined
+                ? "Loading..."
+                : "" +
+                  totalSupply?.displayValue +
+                  " " +
+                  totalSupply?.symbol +
+                  ""}
             </p>
           </div>
 
@@ -68,9 +74,11 @@ export default function NFTDrop() {
           <div className={styles.tokenItem}>
             <h3 className={styles.tokenLabel}>Your Balance</h3>
             <p className={styles.tokenValue}>
-              {balance === undefined && "Loading..."}
-              {balance === null && "Connect wallet to view"}
-              {balance?.displayValue} {balance?.symbol}
+              {address
+                ? balance === undefined
+                  ? "Loading..."
+                  : "" + balance?.displayValue + " " + balance?.symbol + ""
+                : "Connect Your Wallet"}
             </p>
           </div>
         </div>
@@ -79,7 +87,7 @@ export default function NFTDrop() {
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
-      <CodeSnippet text={``} />
+      <CodeSnippet text={codeSnippets.token} />
     </div>
   );
 }

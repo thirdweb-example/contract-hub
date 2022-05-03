@@ -14,10 +14,11 @@ export default function CodeSnippet({ text }: Props) {
         padding: 8,
         border: "1px solid rgba(255,255,255,0.3)",
         borderRadius: 16,
-        width: 1200,
+        width: 900,
         maxWidth: "95vw",
         backgroundColor: "#282c34",
         overflowX: "auto",
+        fontSize: "1rem",
       }}
     >
       <Highlight {...defaultProps} code={text} language="tsx" theme={darkTheme}>

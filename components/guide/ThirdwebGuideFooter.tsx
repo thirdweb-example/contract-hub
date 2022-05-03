@@ -5,9 +5,8 @@ type Props = {
   onLearnMore: () => void;
 };
 
-const githubUrl = "https://github.com/thirdweb-example/magic-link-next-ts";
-const deployUrl =
-  "https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fthirdweb-example%2Fmagic-link-next-ts&env=NEXT_PUBLIC_MAGIC_LINK_API_KEY";
+const githubUrl = "TODO";
+const deployUrl = "TODO";
 
 export default function ThirdwebGuideFooter({ onLearnMore }: Props) {
   return (
