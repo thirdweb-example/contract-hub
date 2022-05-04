@@ -1,5 +1,5 @@
 .footerContainer {
-  height: 120px;
+  height: 85px;
   width: 100vw;
   background-color: #262936;
   position: fixed;
@@ -78,6 +78,7 @@
   .right {
     flex-direction: column;
     gap: 10px;
+    margin-right: 10%;
   }
 
   /* Hide second and third children */

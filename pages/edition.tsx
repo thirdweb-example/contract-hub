@@ -1,4 +1,4 @@
-import { MediaRenderer, useEdition } from "@thirdweb-dev/react";
+import { ThirdwebNftMedia, useEdition } from "@thirdweb-dev/react";
 import { NFTMetadata } from "@thirdweb-dev/sdk";
 import { BigNumber } from "ethers";
 import React, { useEffect, useState } from "react";
@@ -63,9 +63,9 @@ export default function Edition() {
         {!loading ? (
           <div className={styles.nftBoxGrid}>
             {nfts?.map((nft) => (
-              <div className={styles.nftBox} key={nft.metadata.id.toString()}>
-                <MediaRenderer
-                  src={nft.metadata.image}
+              <div key={nft.metadata.id.toString()}>
+                <ThirdwebNftMedia
+                  metadata={nft.metadata}
                   style={{ width: "100%", borderRadius: 15 }}
                 />
                 <h3>{nft.metadata.name}</h3>

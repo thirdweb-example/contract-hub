@@ -1,6 +1,9 @@
-import { MediaRenderer, useMarketplace } from "@thirdweb-dev/react";
-import { AuctionListing, DirectListing } from "@thirdweb-dev/sdk";
-import React, { useEffect, useState } from "react";
+import {
+  ThirdwebNftMedia,
+  useMarketplace,
+  useMarketplaceListings,
+} from "@thirdweb-dev/react";
+import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
@@ -9,20 +12,7 @@ import styles from "../styles/Home.module.css";
 export default function Marketplace() {
   const marketplace = useMarketplace(contractAddresses[5].address);
 
-  const [loading, setLoading] = useState<boolean>(true);
-  const [listings, setListings] = useState<(DirectListing | AuctionListing)[]>(
-    []
-  );
-
-  // Fetch Listings
-  useEffect(() => {
-    (async () => {
-      if (!marketplace) return;
-      const ls = await marketplace.getActiveListings();
-      setListings(ls);
-      setLoading(false);
-    })();
-  }, [marketplace]);
+  const { data: listings, isLoading } = useMarketplaceListings(marketplace);
 
   return (
     <div className={styles.container}>
@@ -40,12 +30,12 @@ export default function Marketplace() {
           </p>
         </div>
 
-        {!loading ? (
+        {!isLoading ? (
           <div className={styles.nftBoxGrid}>
             {listings?.map((listing) => (
               <div className={styles.nftBox} key={listing.id.toString()}>
-                <MediaRenderer
-                  src={listing.asset.image}
+                <ThirdwebNftMedia
+                  metadata={{ ...listing.asset }}
                   style={{ width: "100%", borderRadius: 15 }}
                 />
                 <h3>{listing.asset.name}</h3>

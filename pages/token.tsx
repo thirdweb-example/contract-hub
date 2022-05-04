@@ -1,30 +1,20 @@
-import { useAddress, useToken } from "@thirdweb-dev/react";
-import { CurrencyValue } from "@thirdweb-dev/sdk";
-import React, { useEffect, useState } from "react";
+import {
+  useAddress,
+  useToken,
+  useTokenBalace,
+  useTokenSupply,
+} from "@thirdweb-dev/react";
+import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
-export default function NFTDrop() {
+export default function Token() {
   const tokenContract = useToken(contractAddresses[4].address);
   const address = useAddress();
-
-  const [balance, setBalance] = useState<CurrencyValue>();
-  const [totalSupply, setTotalSupply] = useState<CurrencyValue>();
-
-  // Fetch Token Information
-  useEffect(() => {
-    (async () => {
-      if (address) {
-        const balanceOfUser = await tokenContract?.balanceOf(address);
-        setBalance(balanceOfUser);
-      }
-
-      const supply = await tokenContract?.totalSupply();
-      setTotalSupply(supply);
-    })();
-  }, [address, tokenContract]);
+  const { data: balance } = useTokenBalace(tokenContract, address);
+  const { data: totalSupply } = useTokenSupply(tokenContract);
 
   return (
     <div className={styles.container}>

@@ -1,5 +1,5 @@
 import {
-  MediaRenderer,
+  ThirdwebNftMedia,
   useNFTCollection,
   useNFTList,
 } from "@thirdweb-dev/react";
@@ -45,8 +45,8 @@ export default function NFTCollection() {
           <div className={styles.nftBoxGrid}>
             {nfts?.map((nft) => (
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>
-                <MediaRenderer
-                  src={nft.metadata.image}
+                <ThirdwebNftMedia
+                  metadata={nft.metadata}
                   style={{ width: "100%", borderRadius: 15 }}
                 />
                 <h3>{nft.metadata.name}</h3>

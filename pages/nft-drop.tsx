@@ -1,35 +1,12 @@
-import { MediaRenderer, useNFTDrop } from "@thirdweb-dev/react";
-import { NFTMetadata } from "@thirdweb-dev/sdk";
-import { BigNumber } from "ethers";
-import React, { useEffect, useState } from "react";
+import { useNFTDrop } from "@thirdweb-dev/react";
+import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function NFTDrop() {
-  const nftCollection = useNFTDrop(contractAddresses[0].address);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [allNfts, setAllNfts] = useState<NFTMetadata[]>([]);
-
-  // Fetch NFTs
-  useEffect(() => {
-    (async () => {
-      const unclaimed = await nftCollection?.getAllUnclaimed();
-      setAllNfts(unclaimed as NFTMetadata[]);
-      setLoading(false);
-    })();
-  }, [nftCollection]);
-
-  // Claim an NFT
-  const claimNft = async (id: BigNumber) => {
-    alert(
-      "We won't actually claim this NFT so that it remains available for the demo... But, You can see the code for how to claim the NFTs below."
-    );
-    return;
-
-    await nftCollection?.claim(id);
-  };
+  const nftDrop = useNFTDrop(contractAddresses[0].address);
 
   return (
     <div className={styles.container}>
@@ -62,28 +39,18 @@ export default function NFTDrop() {
             </a>
           </p>
         </div>
-        {!loading ? (
-          <div className={styles.nftBoxGrid}>
-            {allNfts?.map((nft) => (
-              <div className={styles.nftBox} key={nft.id.toString()}>
-                <MediaRenderer
-                  src={nft.image}
-                  style={{ width: "100%", borderRadius: 15 }}
-                />
-                <h3>{nft.name}</h3>
-                <button
-                  className={styles.mainButton}
-                  style={{ marginBottom: 16 }}
-                  onClick={() => claimNft(nft.id)}
-                >
-                  Mint
-                </button>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
+        <img
+          src={`/yellow_star.png`}
+          alt={"Example NFT Image"}
+          style={{ width: 300, height: 300 }}
+        />
+        <button
+          className={styles.mainButton}
+          style={{ marginTop: 16 }}
+          onClick={() => nftDrop?.claim(1)}
+        >
+          Claim An NFT
+        </button>
       </div>
       <hr className={styles.divider} style={{ marginTop: 32 }} />
       {/* Code Snippet */}
