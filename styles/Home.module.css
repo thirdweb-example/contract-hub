@@ -84,7 +84,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 96px;
+  height: 72px;
   margin-bottom: 96px;
   display: flex;
   flex-direction: row;
@@ -237,6 +237,27 @@
   color: rgba(255, 255, 255, 0.9);
   margin-top: 16px;
   padding-top: 25px;
+}
+
+/* Between 700px and 900px */
+@media screen and (min-width: 700px) and (max-width: 900px) {
+  .contractBoxGrid {
+    gap: 2%;
+  }
+
+  .contractBox {
+    width: 48%;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .contractBoxGrid {
+    gap: 2%;
+  }
+
+  .contractBox {
+    width: 98%;
+  }
 }
 
 .nftBoxGrid {

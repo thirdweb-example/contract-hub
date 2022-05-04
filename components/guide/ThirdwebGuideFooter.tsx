@@ -15,9 +15,6 @@ export default function ThirdwebGuideFooter({ onLearnMore }: Props) {
       {/* Left Side column */}
       <div className={styles.left}>
         <div>
-          <h4>Built with 💜 using</h4>
-        </div>
-        <div>
           <a
             href={"https://thirdweb.com/"}
             target="_blank"
