@@ -1,7 +1,9 @@
-import { MediaRenderer, useEditionDrop } from "@thirdweb-dev/react";
-import { NFTMetadata } from "@thirdweb-dev/sdk";
-import { BigNumber } from "ethers";
-import React, { useEffect, useState } from "react";
+import {
+  MediaRenderer,
+  useEditionDrop,
+  useEditionDropList,
+} from "@thirdweb-dev/react";
+import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
@@ -9,23 +11,7 @@ import styles from "../styles/Home.module.css";
 
 export default function EditionDrop() {
   const editionDropContract = useEditionDrop(contractAddresses[2].address);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [nfts, setNfts] = useState<
-    {
-      metadata: NFTMetadata;
-      supply: BigNumber;
-    }[]
-  >([]);
-
-  // Fetch NFTs
-  useEffect(() => {
-    (async () => {
-      if (!editionDropContract) return;
-      const nfts = await editionDropContract.getAll();
-      setNfts(nfts);
-      setLoading(false);
-    })();
-  }, [editionDropContract]);
+  const { data: nfts, isLoading } = useEditionDropList(editionDropContract);
 
   return (
     <div className={styles.container}>
@@ -58,7 +44,7 @@ export default function EditionDrop() {
             </a>
           </p>
         </div>
-        {!loading ? (
+        {!isLoading ? (
           <div className={styles.nftBoxGrid}>
             {nfts?.map((nft) => (
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>

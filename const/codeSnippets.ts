@@ -10,7 +10,6 @@ const codeSnippets = {
         <div key={nft.metadata.id.toString()}>
           <ThirdwebNftMedia
             metadata={nft.metadata}
-            style={{ width: "100%", borderRadius: 15 }}
           />
           <h3>{nft.metadata.name}</h3>
         </div>
@@ -25,8 +24,6 @@ const codeSnippets = {
   return (
     <div>
       <button
-        className={styles.mainButton}
-        style={{ marginBottom: 16 }}
         onClick={() => nftDrop?.claim(1)}
       >
         Mint
@@ -37,22 +34,7 @@ const codeSnippets = {
 
   edition: `export default function Edition() {
   const editionContract = useEdition("<your-contract-address-here>");
-  const [nfts, setNfts] = useState<
-    | {
-        metadata: NFTMetadata;
-        supply: BigNumber;
-      }[]
-    | undefined
-  >([]);
-
-  // Fetch NFTs
-  useEffect(() => {
-    (async () => {
-      if (!editionContract) return;
-      const nfts = await editionContract?.getAll();
-      setNfts(nfts);
-    })();
-  }, [editionContract]);
+  const { data: nfts } = useEditionList(editionContract);
 
   return (
     <div>
@@ -71,42 +53,23 @@ const codeSnippets = {
 
   editionDrop: `export default function EditionDrop() {
   const editionDropContract = useEditionDrop("<your-contract-address-here>");
-  const [nfts, setNfts] = useState<
-    {
-      metadata: NFTMetadata;
-      supply: BigNumber;
-    }[]
-  >([]);
-
-  // Fetch NFTs
-  useEffect(() => {
-    (async () => {
-      if (!editionDropContract) {
-        return;
-      }
-      const nfts = await editionDropContract.getAll();
-      setNfts(nfts);
-    })();
-  }, [editionDropContract]);
+  const { data: nfts } = useEditionDropList(editionDropContract);
 
   return (
-    <div className={styles.collectionContainer}>
-        <div>
-          {nfts?.map((nft) => (
-            <div key={nft.metadata.id.toString()}>
-              <ThirdwebNftMedia
-                metadata={nft.metadata}
-                style={{ width: "100%", borderRadius: 15 }}
-              />
-              <h3>{nft.metadata.name}</h3>
-              <button
-                onClick={() => editionDropContract?.claim(nft.metadata.id, 1)}
-              >
-                Claim
-              </button>
-            </div>
-          ))}
+    <div>
+      {nfts?.map((nft) => (
+        <div key={nft.metadata.id.toString()}>
+          <ThirdwebNftMedia
+            metadata={nft.metadata}
+          />
+          <h3>{nft.metadata.name}</h3>
+          <button
+            onClick={() => editionDropContract?.claim(nft.metadata.id, 1)}
+          >
+            Claim
+          </button>
         </div>
+      ))}
     </div>
   );
 }`,

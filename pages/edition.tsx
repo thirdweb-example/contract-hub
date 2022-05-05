@@ -1,7 +1,9 @@
-import { ThirdwebNftMedia, useEdition } from "@thirdweb-dev/react";
-import { NFTMetadata } from "@thirdweb-dev/sdk";
-import { BigNumber } from "ethers";
-import React, { useEffect, useState } from "react";
+import {
+  ThirdwebNftMedia,
+  useEdition,
+  useEditionList,
+} from "@thirdweb-dev/react";
+import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
@@ -9,26 +11,7 @@ import styles from "../styles/Home.module.css";
 
 export default function Edition() {
   const editionContract = useEdition(contractAddresses[3].address);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [nfts, setNfts] = useState<
-    | {
-        metadata: NFTMetadata;
-        supply: BigNumber;
-      }[]
-    | undefined
-  >([]);
-
-  // Fetch NFTs
-  useEffect(() => {
-    (async () => {
-      if (!editionContract) {
-        return;
-      }
-      const nfts = await editionContract.getAll();
-      setNfts(nfts);
-      setLoading(false);
-    })();
-  }, [editionContract]);
+  const { data: nfts, isLoading } = useEditionList(editionContract);
 
   return (
     <div className={styles.container}>
@@ -60,10 +43,10 @@ export default function Edition() {
             </a>
           </p>
         </div>
-        {!loading ? (
+        {!isLoading ? (
           <div className={styles.nftBoxGrid}>
             {nfts?.map((nft) => (
-              <div key={nft.metadata.id.toString()}>
+              <div className={styles.nftBox} key={nft.metadata.id.toString()}>
                 <ThirdwebNftMedia
                   metadata={nft.metadata}
                   style={{ width: "100%", borderRadius: 15 }}

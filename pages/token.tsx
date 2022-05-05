@@ -32,8 +32,8 @@ export default function Token() {
             in a marketplace, and much more.
           </p>
           <p>
-            This can be combined with other contracts like NFT Drop , Splits ,
-            Edition Drop , and Marketplace for even greater functionality.
+            This can be combined with other contracts like NFT Drop, Splits,
+            Edition Drop, and Marketplace for even greater functionality.
           </p>
           <p>
             <a
