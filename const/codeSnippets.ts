@@ -2,7 +2,7 @@ const codeSnippets = {
   nftCollection: `export default function NFTCollection() {
 
   const nftCollection = useNFTCollection("<your-contract-address-here>");
-  const { data: nfts } = useNFTList(nftCollection);
+  const { data: nfts } = useNFTs(nftCollection);
 
   return (
     <div>
@@ -34,14 +34,14 @@ const codeSnippets = {
 
   edition: `export default function Edition() {
   const editionContract = useEdition("<your-contract-address-here>");
-  const { data: nfts } = useEditionList(editionContract);
+  const { data: nfts } = useEditions(editionContract);
 
   return (
     <div>
         {nfts?.map((nft) => (
           <div key={nft.metadata.id.toString()}>
-            <MediaRenderer
-              src={nft.metadata.image}
+            <ThirdwebNftMedia
+              metadata={nft.metadata}
             />
             <h3>{nft.metadata.name}</h3>
             <p>Quantity: {nft.supply.toNumber()}</p>
@@ -53,7 +53,7 @@ const codeSnippets = {
 
   editionDrop: `export default function EditionDrop() {
   const editionDropContract = useEditionDrop("<your-contract-address-here>");
-  const { data: nfts } = useEditionDropList(editionDropContract);
+  const { data: nfts } = useEditions(editionDropContract);
 
   return (
     <div>
@@ -77,7 +77,7 @@ const codeSnippets = {
   token: `export default function Token() {
   const tokenContract = useToken("<your-contract-address-here>");
   const address = useAddress();
-  const { data: balance } = useTokenBalace(tokenContract, address);
+  const { data: balance } = useTokenBalance(tokenContract, address);
   const { data: totalSupply } = useTokenSupply(tokenContract);
 
   return (
@@ -113,7 +113,7 @@ const codeSnippets = {
 
   marketplace: `export default function Marketplace() {
   const marketplace = useMarketplace("<your-contract-address-here>");
-  const { data: listings } = useMarketplaceListings(marketplace);
+  const { data: listings } = useActiveListings(marketplace);
 
   return (
     <div>

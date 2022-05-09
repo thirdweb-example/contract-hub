@@ -1,8 +1,4 @@
-import {
-  ThirdwebNftMedia,
-  useEdition,
-  useEditionList,
-} from "@thirdweb-dev/react";
+import { ThirdwebNftMedia, useEdition, useEditions } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
@@ -11,7 +7,7 @@ import styles from "../styles/Home.module.css";
 
 export default function Edition() {
   const editionContract = useEdition(contractAddresses[3].address);
-  const { data: nfts, isLoading } = useEditionList(editionContract);
+  const { data: nfts, isLoading } = useEditions(editionContract);
 
   return (
     <div className={styles.container}>

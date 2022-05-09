@@ -1,7 +1,7 @@
 import {
   useAddress,
   useToken,
-  useTokenBalace,
+  useTokenBalance,
   useTokenSupply,
 } from "@thirdweb-dev/react";
 import React from "react";
@@ -13,7 +13,7 @@ import styles from "../styles/Home.module.css";
 export default function Token() {
   const tokenContract = useToken(contractAddresses[4].address);
   const address = useAddress();
-  const { data: balance } = useTokenBalace(tokenContract, address);
+  const { data: balance } = useTokenBalance(tokenContract, address);
   const { data: totalSupply } = useTokenSupply(tokenContract);
 
   return (

@@ -1,7 +1,7 @@
 import {
   ThirdwebNftMedia,
   useMarketplace,
-  useMarketplaceListings,
+  useActiveListings,
 } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
@@ -11,8 +11,7 @@ import styles from "../styles/Home.module.css";
 
 export default function Marketplace() {
   const marketplace = useMarketplace(contractAddresses[5].address);
-
-  const { data: listings, isLoading } = useMarketplaceListings(marketplace);
+  const { data: listings, isLoading } = useActiveListings(marketplace);
 
   return (
     <div className={styles.container}>

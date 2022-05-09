@@ -1,7 +1,7 @@
 import {
   ThirdwebNftMedia,
   useNFTCollection,
-  useNFTList,
+  useNFTs,
 } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
@@ -11,7 +11,7 @@ import styles from "../styles/Home.module.css";
 
 export default function NFTCollection() {
   const nftCollection = useNFTCollection(contractAddresses[1].address);
-  const { data: nfts, isLoading } = useNFTList(nftCollection);
+  const { data: nfts, isLoading } = useNFTs(nftCollection);
 
   return (
     <div className={styles.container}>

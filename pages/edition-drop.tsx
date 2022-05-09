@@ -1,7 +1,7 @@
 import {
-  MediaRenderer,
+  ThirdwebNftMedia,
   useEditionDrop,
-  useEditionDropList,
+  useEditions,
 } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
@@ -11,7 +11,7 @@ import styles from "../styles/Home.module.css";
 
 export default function EditionDrop() {
   const editionDropContract = useEditionDrop(contractAddresses[2].address);
-  const { data: nfts, isLoading } = useEditionDropList(editionDropContract);
+  const { data: nfts, isLoading } = useEditions(editionDropContract);
 
   return (
     <div className={styles.container}>
@@ -48,8 +48,8 @@ export default function EditionDrop() {
           <div className={styles.nftBoxGrid}>
             {nfts?.map((nft) => (
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>
-                <MediaRenderer
-                  src={nft.metadata.image}
+                <ThirdwebNftMedia
+                  metadata={nft.metadata}
                   style={{ width: "100%", borderRadius: 15 }}
                 />
                 <h3>{nft.metadata.name}</h3>
