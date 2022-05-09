@@ -2,6 +2,8 @@
 
 This is an example repository showcases our most popular contracts, and a basic setup for interacting with them all.
 
+**[Check out the Demo here](contract-hub.vercel.app)**!
+
 ## Features:
 
 - NFT Collection: [Demo Page](https://contract-hub.vercel.app/nft-collection) | [Documentation](https://portal.thirdweb.com/contracts/nft-collection)
