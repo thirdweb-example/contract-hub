@@ -1,6 +1,5 @@
 const codeSnippets = {
   nftCollection: `export default function NFTCollection() {
-
   const nftCollection = useNFTCollection("<your-contract-address-here>");
   const { data: nfts } = useNFTs(nftCollection);
 
