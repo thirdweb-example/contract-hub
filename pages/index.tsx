@@ -10,7 +10,7 @@ const Home: NextPage = () => {
       {/* Content */}
       <div className={styles.container}>
         {/* Top Section */}
-        <h1 className={styles.h1}>Thirdweb Contract Example Hub</h1>
+        <h1 className={styles.h1}>thirdweb Contract Example Hub</h1>
         <p className={styles.explain}>
           Learn how to code basic projects for each contract we have at{" "}
           <b>
