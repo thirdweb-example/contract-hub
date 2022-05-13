@@ -35,8 +35,7 @@ export default function ThirdwebGuideFooter({ onLearnMore }: Props) {
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.secondaryButton}
-          style={{ textDecoration: "none" }}
+          className={`${styles.secondaryButton} ${styles.noUnderline}`}
         >
           View on GitHub
         </a>
@@ -45,8 +44,7 @@ export default function ThirdwebGuideFooter({ onLearnMore }: Props) {
           href={deployUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.mainButton}
-          style={{ textDecoration: "none" }}
+          className={`${styles.secondaryButton} ${styles.noUnderline}`}
         >
           Deploy Your Own
         </a>

@@ -17,12 +17,12 @@ export default function Header() {
             <img
               src={`/logo.png`}
               alt="Thirdweb Logo"
-              width={135}
-              style={{ cursor: "pointer" }}
+              className={styles.headerLogo}
             />
           </Link>
         </div>
       </div>
+
       <div className={styles.right}>
         {address ? (
           <>
@@ -30,9 +30,9 @@ export default function Header() {
               className={styles.secondaryButton}
               onClick={() => disconnectWallet()}
             >
-              Disconnect Wallet
+              Disconnect
             </a>
-            <p style={{ marginLeft: 8, marginRight: 8, color: "grey" }}>|</p>
+            <p className={styles.verticalSpacer}>|</p>
             <p>{address.slice(0, 6).concat("...").concat(address.slice(-4))}</p>
           </>
         ) : (

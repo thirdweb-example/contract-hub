@@ -19,12 +19,10 @@ export default function Token() {
   return (
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
-        <div style={{ maxWidth: "800px" }}>
+        <div className={styles.detailPageContainer}>
           <h1>Token</h1>
-          <hr
-            className={styles.smallDivider}
-            style={{ marginTop: 0, marginBottom: 32 }}
-          />
+          <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
+
           <p>
             The Token contract is suited for projects in which you want to
             create <b>your own currency</b>. This currency can be purchased and
@@ -37,7 +35,7 @@ export default function Token() {
           </p>
           <p>
             <a
-              style={{ color: "#e011a7" }}
+              className={styles.lightPurple}
               href="https://portal.thirdweb.com/contracts/token"
             >
               Check out the documentation here.
@@ -73,7 +71,7 @@ export default function Token() {
           </div>
         </div>
       </div>
-      <hr className={styles.divider} style={{ marginTop: 32 }} />
+      <hr className={`${styles.divider} ${styles.spacerTop}`} />
       {/* Code Snippet */}
       <h2>How It Works</h2>
 

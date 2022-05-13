@@ -2,7 +2,7 @@ const contractAddresses = [
   {
     name: "NFT Drop",
     description: "Claimable drop of one-of-one NFTs",
-    address: "0x322067594DBCE69A9a9711BC393440aA5e3Aaca1",
+    address: "0xA712acba5756a0aaDf38e5d46dBe667200d0681b",
     link: `/nft-drop`,
     icon: `/icons/drop.webp`,
   },
@@ -41,6 +41,13 @@ const contractAddresses = [
     link: `/marketplace`,
     icon: `/icons/marketplace.webp`,
   },
+  // {
+  //   name: "Token Drop",
+  //   description: "Claimable drop of your own ERC20 token",
+  //   address: "0x6d3E6AD3B3D35bcC274Abc58b3E1C7cA96E9ea72",
+  //   link: `/token-drop`,
+  //   icon: `/icons/drop.webp`,
+  // },
 ];
 
 export default contractAddresses;

@@ -16,12 +16,9 @@ export default function EditionDrop() {
   return (
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
-        <div style={{ maxWidth: "800px" }}>
+        <div className={styles.detailPageContainer}>
           <h1>Edition Drop</h1>
-          <hr
-            className={styles.smallDivider}
-            style={{ marginTop: 0, marginBottom: 32 }}
-          />
+          <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
 
           <p>
             thirdweb&apos;s <b>Edition Drop</b> lazy mints your NFT and makes it
@@ -37,25 +34,25 @@ export default function EditionDrop() {
 
           <p>
             <a
-              style={{ color: "#e011a7" }}
+              className={styles.lightPurple}
               href="https://portal.thirdweb.com/contracts/edition-drop"
             >
               Check out the documentation here.
             </a>
           </p>
         </div>
+
         {!isLoading ? (
           <div className={styles.nftBoxGrid}>
             {nfts?.map((nft) => (
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>
                 <ThirdwebNftMedia
                   metadata={nft.metadata}
-                  style={{ width: "100%", borderRadius: 15 }}
+                  className={styles.nftMedia}
                 />
                 <h3>{nft.metadata.name}</h3>
                 <button
-                  className={styles.mainButton}
-                  style={{ marginBottom: 16 }}
+                  className={`${styles.mainButton} ${styles.spacerBottom}`}
                   onClick={() => editionDropContract?.claim(nft.metadata.id, 1)}
                 >
                   Claim
@@ -67,7 +64,7 @@ export default function EditionDrop() {
           <p>Loading...</p>
         )}
       </div>
-      <hr className={styles.divider} style={{ marginTop: 32 }} />
+      <hr className={`${styles.divider} ${styles.spacerTop}`} />
       {/* Code Snippet */}
       <h2>How It Works</h2>
 

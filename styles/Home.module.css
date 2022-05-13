@@ -344,3 +344,89 @@
     margin-top: 12px;
   }
 }
+
+/* Screen less than 630, then hide .center */
+@media only screen and (max-width: 630px) {
+  .center {
+    display: none;
+  }
+}
+
+.spacerTop {
+  margin-top: 16px;
+}
+
+.bigSpacerTop {
+  margin-top: 32px;
+}
+
+.spacerBottom {
+  margin-bottom: 16px;
+}
+
+.cardName {
+  margin-bottom: 0px;
+}
+
+.cardDescription {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.headerLogo {
+  width: 135px;
+  cursor: pointer;
+}
+
+.verticalSpacer {
+  color: grey;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.codeSnippet {
+  text-align: start;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  width: 900px;
+  max-width: 95vw;
+  background-color: #282c34;
+  overflow-x: auto;
+  font-size: 1rem;
+}
+
+.noUnderline {
+  text-decoration: none;
+}
+
+.detailPageContainer {
+  max-width: 800px;
+}
+
+.detailPageHr {
+  margin-top: 0px;
+  margin-bottom: 32px;
+}
+
+.lightPurple {
+  color: #e011a7;
+}
+
+.nftMedia {
+  width: 100%;
+  max-height: 300px;
+  border-radius: 15px;
+}
+
+.amountToClaim {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.noGapBottom {
+  margin-bottom: 0px;
+}

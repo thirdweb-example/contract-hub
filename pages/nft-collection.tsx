@@ -16,12 +16,10 @@ export default function NFTCollection() {
   return (
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
-        <div style={{ maxWidth: "800px" }}>
+        <div className={styles.detailPageContainer}>
           <h1>NFT Collection</h1>
-          <hr
-            className={styles.smallDivider}
-            style={{ marginTop: 0, marginBottom: 32 }}
-          />
+          <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
+
           <p>
             NFT Collection is for <b>one-of-one NFTs</b> that can be created at
             any time.
@@ -33,7 +31,7 @@ export default function NFTCollection() {
           </p>
           <p>
             <a
-              style={{ color: "#e011a7" }}
+              className={styles.lightPurple}
               href="https://portal.thirdweb.com/contracts/nft-collection"
             >
               Check out the documentation here.
@@ -47,7 +45,7 @@ export default function NFTCollection() {
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>
                 <ThirdwebNftMedia
                   metadata={nft.metadata}
-                  style={{ width: "100%", borderRadius: 15 }}
+                  className={styles.nftMedia}
                 />
                 <h3>{nft.metadata.name}</h3>
               </div>
@@ -57,7 +55,7 @@ export default function NFTCollection() {
           <p>Loading...</p>
         )}
       </div>
-      <hr className={styles.divider} style={{ marginTop: 32 }} />
+      <hr className={`${styles.divider} ${styles.spacerTop}`} />
       {/* Code Snippet */}
       <h2>How It Works</h2>
 

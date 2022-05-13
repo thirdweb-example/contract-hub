@@ -12,9 +12,8 @@ const Home: NextPage = () => {
         {/* Top Section */}
         <h1 className={styles.h1}>Thirdweb Contract Example Hub</h1>
         <p className={styles.explain}>
-          Learn how to code basic projects for each contract we have at
+          Learn how to code basic projects for each contract we have at{" "}
           <b>
-            {" "}
             <a
               href="https://thirdweb.com/"
               target="_blank"
@@ -39,11 +38,21 @@ const Home: NextPage = () => {
               <div className={styles.contractImage}>
                 <img src={c.icon} />
               </div>
-              <h3 style={{ marginBottom: 0 }}>{c.name}</h3>
-              <p style={{ color: "rgba(255,255,255,0.7)" }}>{c.description}</p>
+              <h3 className={styles.cardName}>{c.name}</h3>
+              <p className={styles.description}>{c.description}</p>
             </div>
           ))}
         </div>
+
+        <a
+          className={`${styles.mainButton} ${styles.bigSpacerTop} ${styles.noUnderline}`}
+          role="button"
+          href="https://portal.thirdweb.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get Started
+        </a>
       </div>
     </>
   );

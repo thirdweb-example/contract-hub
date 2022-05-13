@@ -11,12 +11,9 @@ export default function NFTDrop() {
   return (
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
-        <div style={{ maxWidth: "800px" }}>
+        <div className={styles.detailPageContainer}>
           <h1>NFT Drop</h1>
-          <hr
-            className={styles.smallDivider}
-            style={{ marginTop: 0, marginBottom: 32 }}
-          />
+          <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
 
           <p>
             thirdweb&apos;s <b>NFT Drop</b> lazy mints your NFT and makes it
@@ -32,7 +29,7 @@ export default function NFTDrop() {
 
           <p>
             <a
-              style={{ color: "#e011a7" }}
+              className={styles.lightPurple}
               href="https://portal.thirdweb.com/contracts/nft-drop"
             >
               Check out the documentation here.
@@ -42,17 +39,17 @@ export default function NFTDrop() {
         <img
           src={`/yellow_star.png`}
           alt={"Example NFT Image"}
-          style={{ width: 300, height: 300 }}
+          width={300}
+          height={300}
         />
         <button
-          className={styles.mainButton}
-          style={{ marginTop: 16 }}
+          className={`${styles.mainButton} ${styles.spacerBottom}`}
           onClick={() => nftDrop?.claim(1)}
         >
           Claim An NFT
         </button>
       </div>
-      <hr className={styles.divider} style={{ marginTop: 32 }} />
+      <hr className={`${styles.divider} ${styles.spacerTop}`} />
       {/* Code Snippet */}
       <h2>How It Works</h2>
 

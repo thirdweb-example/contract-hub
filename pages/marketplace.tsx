@@ -16,8 +16,10 @@ export default function Marketplace() {
   return (
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
-        <div style={{ maxWidth: "800px" }}>
+        <div className={styles.detailPageContainer}>
           <h1>Marketplace</h1>
+          <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
+
           <p>
             In a Marketplace you can sell or buy NFTs. Platforms like Opensea or
             Rarible are examples of marketplaces. thirdweb let&apos;s you create
@@ -27,6 +29,15 @@ export default function Marketplace() {
             You can restrict the marketplace to sell only your NFTs, or make it
             an open marketplace; where any user can buy and sell!
           </p>
+
+          <p>
+            <a
+              className={styles.lightPurple}
+              href="https://portal.thirdweb.com/contracts/marketplace"
+            >
+              Check out the documentation here.
+            </a>
+          </p>
         </div>
 
         {!isLoading ? (
@@ -35,7 +46,7 @@ export default function Marketplace() {
               <div className={styles.nftBox} key={listing.id.toString()}>
                 <ThirdwebNftMedia
                   metadata={{ ...listing.asset }}
-                  style={{ width: "100%", borderRadius: 15 }}
+                  className={styles.nftMedia}
                 />
                 <h3>{listing.asset.name}</h3>
                 <p>
@@ -43,8 +54,7 @@ export default function Marketplace() {
                   {listing.buyoutCurrencyValuePerToken.symbol}
                 </p>
                 <button
-                  className={styles.mainButton}
-                  style={{ marginBottom: 16 }}
+                  className={`${styles.mainButton} ${styles.spacerBottom}`}
                   onClick={() =>
                     marketplace?.direct.buyoutListing(listing.id, 1)
                   }
@@ -58,7 +68,7 @@ export default function Marketplace() {
           <p>Loading...</p>
         )}
       </div>
-      <hr className={styles.divider} style={{ marginTop: 32 }} />
+      <hr className={`${styles.divider} ${styles.spacerTop}`} />
       {/* Code Snippet */}
       <h2>How It Works</h2>
 

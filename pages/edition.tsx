@@ -12,12 +12,9 @@ export default function Edition() {
   return (
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
-        <div style={{ maxWidth: "800px" }}>
+        <div className={styles.detailPageContainer}>
           <h1>Edition </h1>
-          <hr
-            className={styles.smallDivider}
-            style={{ marginTop: 0, marginBottom: 32 }}
-          />
+          <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
 
           <p>
             thirdweb&apos;s Edition contract lets you mint multiple NFTs based
@@ -32,7 +29,7 @@ export default function Edition() {
 
           <p>
             <a
-              style={{ color: "#e011a7" }}
+              className={styles.lightPurple}
               href="https://portal.thirdweb.com/contracts/edition"
             >
               Check out the documentation here.
@@ -45,7 +42,7 @@ export default function Edition() {
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>
                 <ThirdwebNftMedia
                   metadata={nft.metadata}
-                  style={{ width: "100%", borderRadius: 15 }}
+                  className={styles.nftMedia}
                 />
                 <h3>{nft.metadata.name}</h3>
                 <p>Quantity: {nft.supply.toNumber()}</p>
@@ -56,7 +53,7 @@ export default function Edition() {
           <p>Loading...</p>
         )}
       </div>
-      <hr className={styles.divider} style={{ marginTop: 32 }} />
+      <hr className={`${styles.divider} ${styles.spacerTop}`} />
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
