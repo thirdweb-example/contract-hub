@@ -56,7 +56,11 @@ export default function Marketplace() {
                 <button
                   className={`${styles.mainButton} ${styles.spacerBottom}`}
                   onClick={() =>
-                    marketplace?.direct.buyoutListing(listing.id, 1)
+                    marketplace?.direct
+                      .buyoutListing(listing.id, 1)
+                      .catch((e) => {
+                        alert(e.message);
+                      })
                   }
                 >
                   Buy

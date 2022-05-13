@@ -26,7 +26,7 @@ export default function EditionDrop() {
           </p>
 
           <p>
-            when you create a drop inside your Edition Drop contract, the NFT is
+            When you create a drop inside your Edition Drop contract, the NFT is
             not minted yet. We prepare everything for your audience, so that
             they can mint it. The user who claims an NFT, mints it and transfers
             it to their wallet.
