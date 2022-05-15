@@ -1,54 +1,46 @@
 import styles from "../../styles/Thirdweb.module.css";
 import React from "react";
 
-type Props = {
-  onLearnMore: () => void;
-};
-
-const githubUrl = "https://github.com/thirdweb-example/contract-hub";
-const deployUrl =
-  "https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fthirdweb-example%2Fcontract-hub";
-
-export default function ThirdwebGuideFooter({ onLearnMore }: Props) {
+export default function ThirdwebGuideFooter() {
   return (
-    <div className={styles.footerContainer}>
-      {/* Left Side column */}
-      <div className={styles.left}>
-        <div>
-          <a
-            href={"https://thirdweb.com/"}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={`/logo.png`} alt="Thirdweb Logo" width={135} />
-          </a>
-        </div>
+    <>
+      <div
+        style={{
+          // Bottom right corner of the screen
+          position: "fixed",
+          bottom: -120,
+          right: -80,
+          height: 300,
+          width: 150,
+          border: "1px solid #eaeaea",
+          // Rotate 45 degrees
+          transform: "rotate(45deg)",
+          backgroundColor: " #262935",
+        }}
+      />
+
+      <div
+        style={{
+          // Bottom right corner of the screen
+          position: "fixed",
+          bottom: 14,
+          right: 18,
+        }}
+      >
+        <img
+          src={"/github.png"}
+          width={40}
+          height={40}
+          role="button"
+          style={{ cursor: "pointer" }}
+          onClick={() =>
+            window.open(
+              "https://github.com/thirdweb-example/contract-hub",
+              "_blank"
+            )
+          }
+        />
       </div>
-
-      {/* Right Side column */}
-      <div className={styles.right}>
-        <a className={styles.secondaryButton} onClick={onLearnMore}>
-          Learn More
-        </a>
-
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${styles.secondaryButton} ${styles.noUnderline}`}
-        >
-          View on GitHub
-        </a>
-
-        <a
-          href={deployUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${styles.secondaryButton} ${styles.noUnderline}`}
-        >
-          Deploy Your Own
-        </a>
-      </div>
-    </div>
+    </>
   );
 }

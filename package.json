@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@thirdweb-dev/react": "^2.2.6",
-    "@thirdweb-dev/sdk": "^2.2.5",
-    "ethers": "^5.6.4",
+    "@thirdweb-dev/react": "^2.2.7",
+    "@thirdweb-dev/sdk": "^2.2.9",
+    "ethers": "^5.6.6",
     "next": "12.1.6",
     "prism-react-renderer": "^1.3.1",
     "react": "^17.0.2",

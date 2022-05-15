@@ -41,13 +41,13 @@ const contractAddresses = [
     link: `/marketplace`,
     icon: `/icons/marketplace.webp`,
   },
-  // {
-  //   name: "Token Drop",
-  //   description: "Claimable drop of your own ERC20 token",
-  //   address: "0x6d3E6AD3B3D35bcC274Abc58b3E1C7cA96E9ea72",
-  //   link: `/token-drop`,
-  //   icon: `/icons/drop.webp`,
-  // },
+  {
+    name: "Token Drop",
+    description: "Claimable drop of your own ERC20 token",
+    address: "0x6d3E6AD3B3D35bcC274Abc58b3E1C7cA96E9ea72",
+    link: `/token-drop`,
+    icon: `/icons/drop.webp`,
+  },
 ];
 
 export default contractAddresses;
