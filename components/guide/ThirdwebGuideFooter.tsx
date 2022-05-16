@@ -38,6 +38,12 @@ export default function ThirdwebGuideFooter() {
           height={40}
           role="button"
           style={{ cursor: "pointer" }}
+          onClick={() =>
+            window.open(
+              "https://github.com/thirdweb-example/contract-hub",
+              "_blank"
+            )
+          }
         />
       </div>
     </>
