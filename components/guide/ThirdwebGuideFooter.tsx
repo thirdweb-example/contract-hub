@@ -6,22 +6,27 @@ export default function ThirdwebGuideFooter() {
     <>
       <div
         style={{
-          // Bottom right corner of the screen
           position: "fixed",
           bottom: -120,
           right: -80,
           height: 300,
           width: 150,
           border: "1px solid #eaeaea",
-          // Rotate 45 degrees
           transform: "rotate(45deg)",
           backgroundColor: " #262935",
+          cursor: "pointer",
         }}
+        role="button"
+        onClick={() =>
+          window.open(
+            "https://github.com/thirdweb-example/contract-hub",
+            "_blank"
+          )
+        }
       />
 
       <div
         style={{
-          // Bottom right corner of the screen
           position: "fixed",
           bottom: 14,
           right: 18,
@@ -33,12 +38,6 @@ export default function ThirdwebGuideFooter() {
           height={40}
           role="button"
           style={{ cursor: "pointer" }}
-          onClick={() =>
-            window.open(
-              "https://github.com/thirdweb-example/contract-hub",
-              "_blank"
-            )
-          }
         />
       </div>
     </>
