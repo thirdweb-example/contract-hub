@@ -1,8 +1,4 @@
-import {
-  ThirdwebNftMedia,
-  useEditionDrop,
-  useEditions,
-} from "@thirdweb-dev/react";
+import { ThirdwebNftMedia, useEditionDrop, useNFTs } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
@@ -11,7 +7,7 @@ import styles from "../styles/Home.module.css";
 
 export default function EditionDrop() {
   const editionDropContract = useEditionDrop(contractAddresses[2].address);
-  const { data: nfts, isLoading } = useEditions(editionDropContract);
+  const { data: nfts, isLoading } = useNFTs(editionDropContract);
 
   return (
     <div className={styles.container}>

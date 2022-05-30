@@ -1,4 +1,4 @@
-import { useNFTDrop } from "@thirdweb-dev/react";
+import { useNFTDrop, useUnclaimedNFTs } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";

@@ -1,3 +1,4 @@
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import contractAddresses from "../const/contractAddresses";
@@ -5,6 +6,7 @@ import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const router = useRouter();
+
   return (
     <>
       {/* Content */}

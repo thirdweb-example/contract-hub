@@ -33,7 +33,7 @@ const codeSnippets = {
 
   edition: `export default function Edition() {
   const editionContract = useEdition("<your-contract-address-here>");
-  const { data: nfts } = useEditions(editionContract);
+  const { data: nfts } = useNFTs(editionContract);
 
   return (
     <div>
@@ -52,7 +52,7 @@ const codeSnippets = {
 
   editionDrop: `export default function EditionDrop() {
   const editionDropContract = useEditionDrop("<your-contract-address-here>");
-  const { data: nfts } = useEditions(editionDropContract);
+  const { data: nfts } = useNFTs(editionDropContract);
 
   return (
     <div>

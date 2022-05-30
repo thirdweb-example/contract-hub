@@ -2,7 +2,7 @@ const contractAddresses = [
   {
     name: "NFT Drop",
     description: "Claimable drop of one-of-one NFTs",
-    address: "0xA712acba5756a0aaDf38e5d46dBe667200d0681b",
+    address: "0x322067594DBCE69A9a9711BC393440aA5e3Aaca1",
     link: `/nft-drop`,
     icon: `/icons/drop.webp`,
   },
@@ -37,7 +37,7 @@ const contractAddresses = [
   {
     name: "Marketplace",
     description: "Your very own marketplace",
-    address: "0x21eB5187d7F1334D7d8BB9b2845307c795303b92",
+    address: "0xc2F6bbE49aF650F0bE21CF309a312EADBC0b7ad4",
     link: `/marketplace`,
     icon: `/icons/marketplace.webp`,
   },
