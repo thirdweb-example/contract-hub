@@ -50,6 +50,7 @@ export default function Edition() {
                   className={styles.nftMedia}
                 />
                 <h3>{nft.metadata.name}</h3>
+                {/* @ts-ignore */}
                 <p>Quantity: {nft.supply?.toNumber()}</p>
               </div>
             ))}
