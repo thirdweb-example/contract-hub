@@ -2,7 +2,7 @@
 
 This is an example repository showcases our most popular contracts, and a basic setup for interacting with them all.
 
-**[Check out the Demo here](https://contract-hub.vercel.app)**!
+**[Check out the Demo here](https://contract-hub.thirdweb-example.com)**!
 
 ## Features:
 
