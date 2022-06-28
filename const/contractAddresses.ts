@@ -9,14 +9,14 @@ const contractAddresses = [
   {
     name: "NFT Collection",
     description: "A collection of one-of-one NFTs",
-    address: "0xc0B249fb15dd14971b2651e7A8f6760d8DEb1A33",
+    address: "0x44cD692ded65508bD677Ed0575B933fbb32822bc",
     link: `/nft-collection`,
     icon: `/icons/nft-collection.webp`,
   },
   {
     name: "Edition Drop",
     description: "Claimable drop of N-of-one NFTs",
-    address: "0x11232C2cd1757C3e4f78dcda318Bdfc6Bc5873A3",
+    address: "0xA89d4C95B404d3B5A760BcbA97192d1Eaaa642A1",
     link: `/edition-drop`,
     icon: `/icons/drop.webp`,
   },
@@ -37,7 +37,7 @@ const contractAddresses = [
   {
     name: "Marketplace",
     description: "Your very own marketplace",
-    address: "0xc2F6bbE49aF650F0bE21CF309a312EADBC0b7ad4",
+    address: "0x3693F8F7A9B4866d2efD6332cDeda9d464AcFc7E",
     link: `/marketplace`,
     icon: `/icons/marketplace.webp`,
   },

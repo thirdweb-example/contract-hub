@@ -1,4 +1,14 @@
-import { ThirdwebNftMedia, useEditionDrop, useNFTs } from "@thirdweb-dev/react";
+import {
+  ChainId,
+  ThirdwebNftMedia,
+  useAddress,
+  useClaimNFT,
+  useEditionDrop,
+  useMetamask,
+  useNetwork,
+  useNetworkMismatch,
+  useNFTs,
+} from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
@@ -6,8 +16,23 @@ import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function EditionDrop() {
+  // Wallet Connection
+  const address = useAddress();
+  const connectWallet = useMetamask();
+
+  // Network Detection
+  const networkMismatch = useNetworkMismatch();
+  const [, switchNetwork] = useNetwork();
+
+  // Connect to the Edition Drop contract
   const editionDropContract = useEditionDrop(contractAddresses[2].address);
+
+  // Get all NFTs from the Edition Drop contract
   const { data: nfts, isLoading } = useNFTs(editionDropContract);
+
+  // Claim an NFT (and update the nfts above)
+  const { mutate: claimNft, isLoading: claiming } =
+    useClaimNFT(editionDropContract);
 
   return (
     <div className={styles.container}>
@@ -49,7 +74,17 @@ export default function EditionDrop() {
                 <h3>{nft.metadata.name}</h3>
                 <button
                   className={`${styles.mainButton} ${styles.spacerBottom}`}
-                  onClick={() => editionDropContract?.claim(nft.metadata.id, 1)}
+                  onClick={() =>
+                    address
+                      ? networkMismatch
+                        ? switchNetwork && switchNetwork(ChainId.Mumbai)
+                        : claimNft({
+                            quantity: 1,
+                            tokenId: nft.metadata.id,
+                            to: address,
+                          })
+                      : connectWallet()
+                  }
                 >
                   Claim
                 </button>

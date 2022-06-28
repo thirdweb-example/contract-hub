@@ -2,16 +2,37 @@ import {
   ThirdwebNftMedia,
   useMarketplace,
   useActiveListings,
+  useBuyNow,
+  ChainId,
+  useAddress,
+  useMetamask,
+  useNetwork,
+  useNetworkMismatch,
 } from "@thirdweb-dev/react";
-import React from "react";
+import React, { useEffect } from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function Marketplace() {
+  // Wallet Connection
+  const address = useAddress();
+  const connectWallet = useMetamask();
+
+  // Network Detection
+  const networkMismatch = useNetworkMismatch();
+  const [, switchNetwork] = useNetwork();
+
   const marketplace = useMarketplace(contractAddresses[5].address);
   const { data: listings, isLoading } = useActiveListings(marketplace);
+  const { mutate: buy, error } = useBuyNow(marketplace);
+
+  useEffect(() => {
+    if (error) {
+      alert(error as string);
+    }
+  }, [error]);
 
   return (
     <div className={styles.container}>
@@ -56,11 +77,15 @@ export default function Marketplace() {
                 <button
                   className={`${styles.mainButton} ${styles.spacerBottom}`}
                   onClick={() =>
-                    marketplace?.direct
-                      .buyoutListing(listing.id, 1)
-                      .catch((e) => {
-                        alert(e.message);
-                      })
+                    address
+                      ? networkMismatch
+                        ? switchNetwork && switchNetwork(ChainId.Mumbai)
+                        : buy({
+                            id: listing.id,
+                            type: listing.type,
+                            buyAmount: 1,
+                          })
+                      : connectWallet()
                   }
                 >
                   Buy

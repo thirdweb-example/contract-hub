@@ -1,12 +1,29 @@
-import { useTokenDrop } from "@thirdweb-dev/react";
+import {
+  ChainId,
+  useAddress,
+  useClaimToken,
+  useMetamask,
+  useNetwork,
+  useNetworkMismatch,
+  useTokenDrop,
+} from "@thirdweb-dev/react";
 import React, { useState } from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
-export default function NFTDrop() {
+export default function TokenDrop() {
+  // Wallet Connection
+  const address = useAddress();
+  const connectWallet = useMetamask();
+
+  // Network Detection
+  const networkMismatch = useNetworkMismatch();
+  const [, switchNetwork] = useNetwork();
+
   const tokenDrop = useTokenDrop(contractAddresses[6].address);
+  const { mutate: claimTokens } = useClaimToken(tokenDrop);
   const [amount, setAmount] = useState<string>("");
 
   return (
@@ -45,7 +62,16 @@ export default function NFTDrop() {
           />
           <button
             className={styles.mainButton}
-            onClick={() => tokenDrop?.claim(amount)}
+            onClick={() =>
+              address
+                ? networkMismatch
+                  ? switchNetwork && switchNetwork(ChainId.Mumbai)
+                  : claimTokens({
+                      amount,
+                      to: address,
+                    })
+                : connectWallet()
+            }
           >
             Claim Tokens
           </button>
@@ -55,7 +81,7 @@ export default function NFTDrop() {
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
-      <CodeSnippet text={codeSnippets.nftDrop} />
+      <CodeSnippet text={codeSnippets.tokenDrop} />
     </div>
   );
 }

@@ -1,9 +1,4 @@
-import {
-  ThirdwebNftMedia,
-  useEdition,
-  useNFTs,
-  useTokenSupply,
-} from "@thirdweb-dev/react";
+import { ThirdwebNftMedia, useEdition, useNFTs } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";

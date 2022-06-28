@@ -19,13 +19,19 @@ const codeSnippets = {
 
   nftDrop: `export default function NFTDrop() {
   const nftDrop = useNFTDrop("<your-contract-address-here>");
+  const { mutate: claimNft } = useClaimNFT(nftDrop);
 
   return (
     <div>
       <button
-        onClick={() => nftDrop?.claim(1)}
+        onClick={() =>
+          claimNft({
+            quantity: 1,
+            to: address,
+          })
+        }
       >
-        Mint
+        Claim
       </button>
     </div>
   );
@@ -53,6 +59,7 @@ const codeSnippets = {
   editionDrop: `export default function EditionDrop() {
   const editionDropContract = useEditionDrop("<your-contract-address-here>");
   const { data: nfts } = useNFTs(editionDropContract);
+  const { mutate: claimNft } = useClaimNFT(editionDropContract);
 
   return (
     <div>
@@ -63,7 +70,13 @@ const codeSnippets = {
           />
           <h3>{nft.metadata.name}</h3>
           <button
-            onClick={() => editionDropContract?.claim(nft.metadata.id, 1)}
+            onClick={() => 
+              claimNft({
+                quantity: 1,
+                tokenId: nft.metadata.id,
+                to: address,
+              })
+            }
           >
             Claim
           </button>
@@ -113,6 +126,7 @@ const codeSnippets = {
   marketplace: `export default function Marketplace() {
   const marketplace = useMarketplace("<your-contract-address-here>");
   const { data: listings } = useActiveListings(marketplace);
+  const { mutate: buy } = useBuyNow(marketplace);
 
   return (
     <div>
@@ -127,11 +141,48 @@ const codeSnippets = {
             {" "}
             {listing.buyoutCurrencyValuePerToken.symbol}
           </p>
-          <button onClick={() => marketplace?.direct.buyoutListing(listing.id, 1)}>
-            Buy
-          </button>
+            <button
+              onClick={() =>
+                buy({
+                  id: listing.id,
+                  type: listing.type,
+                  buyAmount: 1,
+                })
+              }
+            >
+              Buy
+            </button>
         </div>
       ))}
+    </div>
+  );
+}`,
+
+  tokenDrop: `export default function TokenDrop() {
+  const tokenDrop = useTokenDrop("<your-contract-address-here>");
+  const { mutate: claimTokens } = useClaimToken(tokenDrop);
+  const [amount, setAmount] = useState<string>("");
+
+  return (
+    <div>
+      <div className={styles.amountToClaim}>
+        <input
+          type="text"
+          placeholder="Amount to claim"
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        <button
+          className={styles.mainButton}
+          onClick={() =>
+            claimTokens({
+              amount: amount,
+              to: address,
+            })
+          }
+        >
+          Claim Tokens
+        </button>
+      </div>
     </div>
   );
 }`,

@@ -1,12 +1,30 @@
-import { useNFTDrop, useUnclaimedNFTs } from "@thirdweb-dev/react";
-import React from "react";
+import {
+  ChainId,
+  useAddress,
+  useClaimNFT,
+  useMetamask,
+  useNetwork,
+  useNetworkMismatch,
+} from "@thirdweb-dev/react";
+import { useNFTDrop } from "@thirdweb-dev/react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function NFTDrop() {
+  // Wallet Connection
+  const address = useAddress();
+  const connectWallet = useMetamask();
+
+  // Network Detection
+  const networkMismatch = useNetworkMismatch();
+  const [, switchNetwork] = useNetwork();
+
+  // Connect to the NFT Drop contract
   const nftDrop = useNFTDrop(contractAddresses[0].address);
+  // Claim an NFT
+  const { mutate: claimNft, isLoading: claiming } = useClaimNFT(nftDrop);
 
   return (
     <div className={styles.container}>
@@ -44,9 +62,18 @@ export default function NFTDrop() {
         />
         <button
           className={`${styles.mainButton} ${styles.spacerBottom}`}
-          onClick={() => nftDrop?.claim(1)}
+          onClick={() =>
+            address
+              ? networkMismatch
+                ? switchNetwork && switchNetwork(ChainId.Mumbai)
+                : claimNft({
+                    quantity: 1,
+                    to: address,
+                  })
+              : connectWallet()
+          }
         >
-          Claim An NFT
+          Claim
         </button>
       </div>
       <hr className={`${styles.divider} ${styles.spacerTop}`} />
