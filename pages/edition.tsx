@@ -30,7 +30,7 @@ export default function Edition() {
           <p>
             <a
               className={styles.lightPurple}
-              href="https://portal.thirdweb.com/contracts/edition"
+              href="https://portal.thirdweb.com/pre-built-contracts/edition"
             >
               Check out the documentation here.
             </a>

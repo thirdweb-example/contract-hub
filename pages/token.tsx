@@ -36,7 +36,7 @@ export default function Token() {
           <p>
             <a
               className={styles.lightPurple}
-              href="https://portal.thirdweb.com/contracts/token"
+              href="https://portal.thirdweb.com/pre-built-contracts/token"
             >
               Check out the documentation here.
             </a>

@@ -48,7 +48,7 @@ export default function NFTDrop() {
           <p>
             <a
               className={styles.lightPurple}
-              href="https://portal.thirdweb.com/contracts/nft-drop"
+              href="https://portal.thirdweb.com/pre-built-contracts/nft-drop"
             >
               Check out the documentation here.
             </a>

@@ -54,7 +54,7 @@ export default function Marketplace() {
           <p>
             <a
               className={styles.lightPurple}
-              href="https://portal.thirdweb.com/contracts/marketplace"
+              href="https://portal.thirdweb.com/pre-built-contracts/marketplace"
             >
               Check out the documentation here.
             </a>

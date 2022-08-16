@@ -56,7 +56,7 @@ export default function EditionDrop() {
           <p>
             <a
               className={styles.lightPurple}
-              href="https://portal.thirdweb.com/contracts/edition-drop"
+              href="https://portal.thirdweb.com/pre-built-contracts/edition-drop"
             >
               Check out the documentation here.
             </a>

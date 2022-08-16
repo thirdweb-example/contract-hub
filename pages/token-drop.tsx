@@ -46,7 +46,7 @@ export default function TokenDrop() {
           <p>
             <a
               className={styles.lightPurple}
-              href="https://portal.thirdweb.com/contracts/token-drop"
+              href="https://portal.thirdweb.com/pre-built-contracts/token-drop"
             >
               Check out the documentation here.
             </a>
