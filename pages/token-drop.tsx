@@ -1,29 +1,11 @@
-import {
-  ChainId,
-  useAddress,
-  useClaimToken,
-  useMetamask,
-  useNetwork,
-  useNetworkMismatch,
-  useTokenDrop,
-} from "@thirdweb-dev/react";
 import React, { useState } from "react";
+import { Web3Button } from "@thirdweb-dev/react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function TokenDrop() {
-  // Wallet Connection
-  const address = useAddress();
-  const connectWallet = useMetamask();
-
-  // Network Detection
-  const networkMismatch = useNetworkMismatch();
-  const [, switchNetwork] = useNetwork();
-
-  const tokenDrop = useTokenDrop(contractAddresses[6].address);
-  const { mutate: claimTokens } = useClaimToken(tokenDrop);
   const [amount, setAmount] = useState<string>("");
 
   return (
@@ -60,21 +42,15 @@ export default function TokenDrop() {
             placeholder="Amount to claim"
             onChange={(e) => setAmount(e.target.value)}
           />
-          <button
-            className={styles.mainButton}
-            onClick={() =>
-              address
-                ? networkMismatch
-                  ? switchNetwork && switchNetwork(ChainId.Mumbai)
-                  : claimTokens({
-                      amount,
-                      to: address,
-                    })
-                : connectWallet()
-            }
+
+          <Web3Button
+            contractAddress={contractAddresses[6].address}
+            action={(contract) => contract.erc20.claim(amount)}
+            colorMode="dark"
+            accentColor="#F213A4"
           >
-            Claim Tokens
-          </button>
+            Claim
+          </Web3Button>
         </div>
       </div>
       <hr className={`${styles.divider} ${styles.spacerTop}`} />

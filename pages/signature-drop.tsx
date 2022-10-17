@@ -4,30 +4,35 @@ import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
-export default function NFTDrop() {
+export default function SignatureDrop() {
   return (
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
         <div className={styles.detailPageContainer}>
-          <h1>NFT Drop</h1>
+          <h1>Signature Drop</h1>
           <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
-
           <p>
-            thirdweb&apos;s <b>NFT Drop</b> lazy mints your NFT and makes it
-            available to be claimed by your users.
+            The Signature Drop contract uses the ERC721A standard to release a
+            collection of unique one-of-one NFTs with lower gas fees for your
+            community compared to the regular ERC721 standard used in the NFT
+            Drop.
           </p>
-
           <p>
-            When you create a drop inside your NFT Drop contract, the NFT is not
-            minted yet. We prepare everything for your audience, so that they
-            can mint it. The user who claims an NFT mints it, and transfers it
-            to their wallet.
+            You lazy-mint your NFTs by uploading the metadata and configuring a
+            single claim phase, laying out the rules for how your users can
+            claim NFTs from your drop; such as an allowlist, release date, or
+            delayed reveal.
           </p>
-
+          <p>
+            The "signature" in the name refers to the signature-based minting
+            feature, that allows you to grant users the ability to mint NFT(s)
+            based on a custom set of criteria, checked on-demand. This feature
+            is optional and separate from the claim phase conditions.
+          </p>
           <p>
             <a
               className={styles.lightPurple}
-              href="https://portal.thirdweb.com/pre-built-contracts/nft-drop"
+              href="https://portal.thirdweb.com/pre-built-contracts/signature-drop"
             >
               Check out the documentation here.
             </a>
@@ -40,7 +45,7 @@ export default function NFTDrop() {
           height={300}
         />
         <Web3Button
-          contractAddress={contractAddresses[1].address}
+          contractAddress={contractAddresses[0].address}
           action={(contract) => contract.erc721.claim(1)}
           colorMode="dark"
           accentColor="#F213A4"
@@ -54,7 +59,7 @@ export default function NFTDrop() {
       {/* Code Snippet */}
       <h2>How It Works</h2>
 
-      <CodeSnippet text={codeSnippets.nftDrop} />
+      <CodeSnippet text={codeSnippets.signatureDrop} />
     </div>
   );
 }

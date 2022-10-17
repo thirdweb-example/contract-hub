@@ -1,5 +1,12 @@
 const contractAddresses = [
   {
+    name: "Signature Drop",
+    description: "Claimable drop of ERC721A NFTs",
+    address: "0xb21fe4cA5424A0fDC926b0F1f527f858d9e29A64",
+    link: `/signature-drop`,
+    icon: `/icons/drop.webp`,
+  },
+  {
     name: "NFT Drop",
     description: "Claimable drop of one-of-one NFTs",
     address: "0x322067594DBCE69A9a9711BC393440aA5e3Aaca1",

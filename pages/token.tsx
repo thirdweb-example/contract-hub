@@ -1,9 +1,4 @@
-import {
-  useAddress,
-  useToken,
-  useTokenBalance,
-  useTokenSupply,
-} from "@thirdweb-dev/react";
+import { useContract, useTokenSupply } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
@@ -11,9 +6,7 @@ import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function Token() {
-  const tokenContract = useToken(contractAddresses[4].address);
-  const address = useAddress();
-  const { data: balance } = useTokenBalance(tokenContract, address);
+  const { contract: tokenContract } = useContract(contractAddresses[4].address);
   const { data: totalSupply } = useTokenSupply(tokenContract);
 
   return (
@@ -48,25 +41,9 @@ export default function Token() {
           <div className={styles.tokenItem}>
             <h3 className={styles.tokenLabel}>Total Supply</h3>
             <p className={styles.tokenValue}>
-              {totalSupply === undefined
-                ? "Loading..."
-                : "" +
-                  totalSupply?.displayValue +
-                  " " +
-                  totalSupply?.symbol +
-                  ""}
-            </p>
-          </div>
-
-          {/* Balance */}
-          <div className={styles.tokenItem}>
-            <h3 className={styles.tokenLabel}>Your Balance</h3>
-            <p className={styles.tokenValue}>
-              {address
-                ? balance === undefined
-                  ? "Loading..."
-                  : "" + balance?.displayValue + " " + balance?.symbol + ""
-                : "Connect Your Wallet"}
+              {totalSupply
+                ? totalSupply?.displayValue + " " + totalSupply?.symbol
+                : "Loading..."}
             </p>
           </div>
         </div>

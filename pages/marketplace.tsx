@@ -1,38 +1,20 @@
 import {
   ThirdwebNftMedia,
-  useMarketplace,
   useActiveListings,
-  useBuyNow,
-  ChainId,
-  useAddress,
-  useMetamask,
-  useNetwork,
-  useNetworkMismatch,
+  useContract,
+  Web3Button,
 } from "@thirdweb-dev/react";
-import React, { useEffect } from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function Marketplace() {
-  // Wallet Connection
-  const address = useAddress();
-  const connectWallet = useMetamask();
-
-  // Network Detection
-  const networkMismatch = useNetworkMismatch();
-  const [, switchNetwork] = useNetwork();
-
-  const marketplace = useMarketplace(contractAddresses[5].address);
+  const { contract: marketplace } = useContract(
+    contractAddresses[5].address,
+    "marketplace"
+  );
   const { data: listings, isLoading } = useActiveListings(marketplace);
-  const { mutate: buy, error } = useBuyNow(marketplace);
-
-  useEffect(() => {
-    if (error) {
-      alert(error as string);
-    }
-  }, [error]);
 
   return (
     <div className={styles.container}>
@@ -74,22 +56,16 @@ export default function Marketplace() {
                   {listing.buyoutCurrencyValuePerToken.displayValue}{" "}
                   {listing.buyoutCurrencyValuePerToken.symbol}
                 </p>
-                <button
-                  className={`${styles.mainButton} ${styles.spacerBottom}`}
-                  onClick={() =>
-                    address
-                      ? networkMismatch
-                        ? switchNetwork && switchNetwork(ChainId.Mumbai)
-                        : buy({
-                            id: listing.id,
-                            type: listing.type,
-                            buyAmount: 1,
-                          })
-                      : connectWallet()
-                  }
+                <Web3Button
+                  colorMode="dark"
+                  accentColor="#F213A4"
+                  contractAddress={contractAddresses[5].address}
+                  action={() => marketplace?.buyoutListing(listing.id, 1)}
+                  onError={(error) => alert(error)}
+                  onSuccess={() => alert("Success!")}
                 >
                   Buy
-                </button>
+                </Web3Button>
               </div>
             ))}
           </div>

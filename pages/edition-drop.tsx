@@ -1,13 +1,8 @@
 import {
-  ChainId,
   ThirdwebNftMedia,
-  useAddress,
-  useClaimNFT,
-  useEditionDrop,
-  useMetamask,
-  useNetwork,
-  useNetworkMismatch,
+  useContract,
   useNFTs,
+  Web3Button,
 } from "@thirdweb-dev/react";
 import React from "react";
 import CodeSnippet from "../components/guide/CodeSnippet";
@@ -16,23 +11,13 @@ import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function EditionDrop() {
-  // Wallet Connection
-  const address = useAddress();
-  const connectWallet = useMetamask();
-
-  // Network Detection
-  const networkMismatch = useNetworkMismatch();
-  const [, switchNetwork] = useNetwork();
-
   // Connect to the Edition Drop contract
-  const editionDropContract = useEditionDrop(contractAddresses[2].address);
+  const { contract: editionDropContract } = useContract(
+    contractAddresses[2].address
+  );
 
   // Get all NFTs from the Edition Drop contract
   const { data: nfts, isLoading } = useNFTs(editionDropContract);
-
-  // Claim an NFT (and update the nfts above)
-  const { mutate: claimNft, isLoading: claiming } =
-    useClaimNFT(editionDropContract);
 
   return (
     <div className={styles.container}>
@@ -72,22 +57,18 @@ export default function EditionDrop() {
                   className={styles.nftMedia}
                 />
                 <h3>{nft.metadata.name}</h3>
-                <button
-                  className={`${styles.mainButton} ${styles.spacerBottom}`}
-                  onClick={() =>
-                    address
-                      ? networkMismatch
-                        ? switchNetwork && switchNetwork(ChainId.Mumbai)
-                        : claimNft({
-                            quantity: 1,
-                            tokenId: nft.metadata.id,
-                            to: address,
-                          })
-                      : connectWallet()
+                <Web3Button
+                  contractAddress={contractAddresses[2].address}
+                  action={(contract) =>
+                    contract.erc1155.claim(1, nft.metadata.id)
                   }
+                  colorMode="dark"
+                  accentColor="#F213A4"
+                  onSuccess={() => alert("Claimed NFT!")}
+                  onError={(err) => alert(err)}
                 >
                   Claim
-                </button>
+                </Web3Button>
               </div>
             ))}
           </div>

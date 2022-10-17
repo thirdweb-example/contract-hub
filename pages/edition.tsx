@@ -1,12 +1,13 @@
-import { ThirdwebNftMedia, useEdition, useNFTs } from "@thirdweb-dev/react";
-import React from "react";
+import { ThirdwebNftMedia, useContract, useNFTs } from "@thirdweb-dev/react";
 import CodeSnippet from "../components/guide/CodeSnippet";
 import codeSnippets from "../const/codeSnippets";
 import contractAddresses from "../const/contractAddresses";
 import styles from "../styles/Home.module.css";
 
 export default function Edition() {
-  const editionContract = useEdition(contractAddresses[3].address);
+  const { contract: editionContract } = useContract(
+    contractAddresses[3].address
+  );
   const { data: nfts, isLoading } = useNFTs(editionContract);
 
   return (
@@ -45,8 +46,7 @@ export default function Edition() {
                   className={styles.nftMedia}
                 />
                 <h3>{nft.metadata.name}</h3>
-                {/* @ts-ignore */}
-                <p>Quantity: {nft.supply?.toNumber()}</p>
+                <p>Quantity: {nft.supply}</p>
               </div>
             ))}
           </div>

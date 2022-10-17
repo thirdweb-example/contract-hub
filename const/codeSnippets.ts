@@ -1,6 +1,6 @@
 const codeSnippets = {
   nftCollection: `export default function NFTCollection() {
-  const nftCollection = useNFTCollection("<your-contract-address-here>");
+  const {contract: nftCollection} = useContract("<your-contract-address-here>");
   const { data: nfts } = useNFTs(nftCollection);
 
   return (
@@ -17,28 +17,40 @@ const codeSnippets = {
   )
 }`,
 
-  nftDrop: `export default function NFTDrop() {
-  const nftDrop = useNFTDrop("<your-contract-address-here>");
-  const { mutate: claimNft } = useClaimNFT(nftDrop);
+  signatureDrop: `import { Web3Button } from "@thirdweb-dev/react";
 
+export default function SignatureDrop() {
   return (
-    <div>
-      <button
-        onClick={() =>
-          claimNft({
-            quantity: 1,
-            to: address,
-          })
-        }
-      >
-        Claim
-      </button>
-    </div>
+    <Web3Button
+      contractAddress={"{{contract-address}}"}
+      action={(contract) => contract.erc721.claim(1)}
+      onSuccess={() => alert("Claimed NFT!")}
+      onError={(err) => alert(err)}
+    >
+      Claim NFT
+    </Web3Button>
   );
-}`,
+}
+`,
+
+  nftDrop: `import { Web3Button } from "@thirdweb-dev/react";
+
+export default function NFTDrop() {
+  return (
+    <Web3Button
+      contractAddress={"{{contract-address}}"}
+      action={(contract) => contract.erc721.claim(1)}
+      onSuccess={() => alert("Claimed NFT!")}
+      onError={(err) => alert(err)}
+    >
+      Claim NFT
+    </Web3Button>
+  );
+}
+`,
 
   edition: `export default function Edition() {
-  const editionContract = useEdition("<your-contract-address-here>");
+  const { contract: editionContract } = useContract("<your-contract-address-here>");
   const { data: nfts } = useNFTs(editionContract);
 
   return (
@@ -49,7 +61,7 @@ const codeSnippets = {
               metadata={nft.metadata}
             />
             <h3>{nft.metadata.name}</h3>
-            <p>Quantity: {nft.supply.toNumber()}</p>
+            <p>Quantity: {nft.supply}</p>
           </div>
         ))}
     </div>
@@ -57,9 +69,8 @@ const codeSnippets = {
 }`,
 
   editionDrop: `export default function EditionDrop() {
-  const editionDropContract = useEditionDrop("<your-contract-address-here>");
+  const { contract: editionDropContract } = useContract("<your-contract-address-here>");
   const { data: nfts } = useNFTs(editionDropContract);
-  const { mutate: claimNft } = useClaimNFT(editionDropContract);
 
   return (
     <div>
@@ -69,17 +80,16 @@ const codeSnippets = {
             metadata={nft.metadata}
           />
           <h3>{nft.metadata.name}</h3>
-          <button
-            onClick={() => 
-              claimNft({
-                quantity: 1,
-                tokenId: nft.metadata.id,
-                to: address,
-              })
+          <Web3Button
+            contractAddress={"{{contract-address}}"}
+            action={(contract) =>
+              contract.erc1155.claim(1, nft.metadata.id)
             }
+            onSuccess={() => alert("Claimed NFT!")}
+            onError={(err) => alert(err)}
           >
             Claim
-          </button>
+          </Web3Button>
         </div>
       ))}
     </div>
@@ -87,46 +97,31 @@ const codeSnippets = {
 }`,
 
   token: `export default function Token() {
-  const tokenContract = useToken("<your-contract-address-here>");
-  const address = useAddress();
-  const { data: balance } = useTokenBalance(tokenContract, address);
+  const { contract: tokenContract } = useContract(contractAddresses[4].address);
   const { data: totalSupply } = useTokenSupply(tokenContract);
 
   return (
     <div>
-      {/* Total Supply */}
-      <div>
-        <h3>Total Supply</h3>
-        <p>
-          {totalSupply === undefined
-            ? "Loading..."
-            : "" +
-              totalSupply?.displayValue +
-              " " +
-              totalSupply?.symbol +
-              ""}
-        </p>
-      </div>
-
-      {/* Balance */}
-      <div>
-        <h3>Your Balance</h3>
-        <p>
-          {address
-            ? balance === undefined
-              ? "Loading..."
-              : "" + balance?.displayValue + " " + balance?.symbol + ""
-            : "Connect Your Wallet"}
-        </p>
-      </div>
+      <h3>Total Supply</h3>
+      <p>
+        {totalSupply === undefined
+          ? "Loading..."
+          : "" +
+            totalSupply?.displayValue +
+            " " +
+            totalSupply?.symbol +
+            ""}
+      </p>
     </div>
   );
 }`,
 
   marketplace: `export default function Marketplace() {
-  const marketplace = useMarketplace("<your-contract-address-here>");
+  const { contract: marketplace } = useContract(
+    contractAddresses[5].address,
+    "marketplace"
+  );
   const { data: listings } = useActiveListings(marketplace);
-  const { mutate: buy } = useBuyNow(marketplace);
 
   return (
     <div>
@@ -141,17 +136,16 @@ const codeSnippets = {
             {" "}
             {listing.buyoutCurrencyValuePerToken.symbol}
           </p>
-            <button
-              onClick={() =>
-                buy({
-                  id: listing.id,
-                  type: listing.type,
-                  buyAmount: 1,
-                })
-              }
-            >
-              Buy
-            </button>
+          <Web3Button
+            colorMode="dark"
+            accentColor="#F213A4"
+            contractAddress={contractAddresses[5].address}
+            action={() => marketplace?.buyoutListing(listing.id, 1)}
+            onError={(error) => alert(error)}
+            onSuccess={() => alert("Success!")}
+          >
+            Buy
+          </Web3Button>
         </div>
       ))}
     </div>
@@ -159,30 +153,23 @@ const codeSnippets = {
 }`,
 
   tokenDrop: `export default function TokenDrop() {
-  const tokenDrop = useTokenDrop("<your-contract-address-here>");
-  const { mutate: claimTokens } = useClaimToken(tokenDrop);
   const [amount, setAmount] = useState<string>("");
 
   return (
     <div>
-      <div className={styles.amountToClaim}>
-        <input
-          type="text"
-          placeholder="Amount to claim"
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <button
-          className={styles.mainButton}
-          onClick={() =>
-            claimTokens({
-              amount: amount,
-              to: address,
-            })
-          }
-        >
-          Claim Tokens
-        </button>
-      </div>
+      <input
+        type="text"
+        placeholder="Amount to claim"
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <Web3Button
+        contractAddress={contractAddresses[6].address}
+        action={(contract) => contract.erc20.claim(amount)}
+        colorMode="dark"
+        accentColor="#F213A4"
+      >
+        Claim
+      </Web3Button>
     </div>
   );
 }`,

@@ -1,4 +1,3 @@
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import contractAddresses from "../const/contractAddresses";
@@ -14,7 +13,7 @@ const Home: NextPage = () => {
         {/* Top Section */}
         <h1 className={styles.h1}>thirdweb Contract Example Hub</h1>
         <p className={styles.explain}>
-          Learn how to code basic projects for each contract we have at{" "}
+          Learn how to code basic projects for each prebuilt contract we have at{" "}
           <b>
             <a
               href="https://thirdweb.com/"

@@ -275,6 +275,9 @@
   border: 1px solid #ccc;
   width: 19%;
   min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Between 1200 and 800 */
