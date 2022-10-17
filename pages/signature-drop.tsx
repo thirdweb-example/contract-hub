@@ -24,10 +24,11 @@ export default function SignatureDrop() {
             delayed reveal.
           </p>
           <p>
-            The "signature" in the name refers to the signature-based minting
-            feature, that allows you to grant users the ability to mint NFT(s)
-            based on a custom set of criteria, checked on-demand. This feature
-            is optional and separate from the claim phase conditions.
+            The &ldquo;signature&rdquo; in the name refers to the
+            signature-based minting feature, that allows you to grant users the
+            ability to mint NFT(s) based on a custom set of criteria, checked
+            on-demand. This feature is optional and separate from the claim
+            phase conditions.
           </p>
           <p>
             <a
