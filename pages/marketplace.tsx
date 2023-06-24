@@ -57,8 +57,7 @@ export default function Marketplace() {
                   {listing.buyoutCurrencyValuePerToken.symbol}
                 </p>
                 <Web3Button
-                  colorMode="dark"
-                  accentColor="#F213A4"
+                  theme="dark"
                   contractAddress={contractAddresses[5].address}
                   action={() => marketplace?.buyoutListing(listing.id, 1)}
                   onError={(error) => alert(error)}

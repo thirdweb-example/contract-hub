@@ -137,8 +137,7 @@ export default function NFTDrop() {
             {listing.buyoutCurrencyValuePerToken.symbol}
           </p>
           <Web3Button
-            colorMode="dark"
-            accentColor="#F213A4"
+            theme="dark"
             contractAddress={contractAddresses[5].address}
             action={() => marketplace?.buyoutListing(listing.id, 1)}
             onError={(error) => alert(error)}
@@ -165,8 +164,7 @@ export default function NFTDrop() {
       <Web3Button
         contractAddress={contractAddresses[6].address}
         action={(contract) => contract.erc20.claim(amount)}
-        colorMode="dark"
-        accentColor="#F213A4"
+        theme="dark"
       >
         Claim
       </Web3Button>
