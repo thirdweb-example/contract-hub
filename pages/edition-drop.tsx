@@ -62,8 +62,7 @@ export default function EditionDrop() {
                   action={(contract) =>
                     contract.erc1155.claim(1, nft.metadata.id)
                   }
-                  colorMode="dark"
-                  accentColor="#F213A4"
+                  theme="dark"
                   onSuccess={() => alert("Claimed NFT!")}
                   onError={(err) => alert(err)}
                 >

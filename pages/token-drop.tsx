@@ -46,8 +46,7 @@ export default function TokenDrop() {
           <Web3Button
             contractAddress={contractAddresses[6].address}
             action={(contract) => contract.erc20.claim(amount)}
-            colorMode="dark"
-            accentColor="#F213A4"
+            theme="dark"
           >
             Claim
           </Web3Button>

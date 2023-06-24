@@ -48,8 +48,7 @@ export default function SignatureDrop() {
         <Web3Button
           contractAddress={contractAddresses[0].address}
           action={(contract) => contract.erc721.claim(1)}
-          colorMode="dark"
-          accentColor="#F213A4"
+          theme="dark"
           onSuccess={() => alert("Claimed NFT!")}
           onError={(err) => alert(err)}
         >
