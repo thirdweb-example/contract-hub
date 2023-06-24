@@ -1,17 +1,17 @@
 import React from "react";
 import type { AppProps } from "next/app";
-import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
 import ThirdwebGuideFooter from "../components/guide/ThirdwebGuideFooter";
 import Header from "../components/Header";
 import Head from "next/head";
 import "../styles/globals.css";
 
-// This is the chainId your dApp will work on.
-const activeChainId = ChainId.Mumbai;
+// This is the chain your dApp will work on.
+const activeChain = "mumbai";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThirdwebProvider desiredChainId={activeChainId}>
+    <ThirdwebProvider activeChain={activeChain}>
       <Head>
         <title>thirdweb Contract Example Hub</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
